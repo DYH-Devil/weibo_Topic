@@ -12,15 +12,15 @@ if __name__ == '__main__':
     #-----------------数据处理完毕---------------------------------
 
     texts = text_del_stopwords
-    dictionary, corpus = create_create_dict(texts)
+    dictionary, corpus = create_dict(texts)
     # dictionary:根据语料生成的词典
-    # corpus:[(id,time)]:(单词编号，次数)
+    # corpus:[(id,time)]:(单词编号，文档中词语出现的次数)
     print(dictionary)
     # print(corpus)
 
     tfidf = TfidfModel(corpus)
     # tfidf:<num_docs=5777 , num_nnz=98313>
-    # num_docs:表示corpus中的文档数 , num_nnz:表示每个文档中词数(不含重复)之和
+    # num_docs:表示corpus中的文档数 , num_nnz:表示每个文档中词数(不含重复(文档中不重复))之和
     # tfidf描述词语所具有的区分性，即哪些词是文档的关键词
     tfidf_corpus = tfidf[corpus]  # 将corpus中词的频数转为tfidf值[(id,tfidf),......]
 
