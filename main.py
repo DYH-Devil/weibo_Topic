@@ -5,6 +5,7 @@ from data_process.word_cloud import WordCloud_process
 from data_process.data_clean import text_list as text
 from data_process.LDA import create_dict , LDA_topic
 import matplotlib.pyplot as plt
+import pyLDAvis.gensim
 
 if __name__ == '__main__':
     text_clean = text_process(text)  # 清洗
@@ -61,3 +62,9 @@ if __name__ == '__main__':
                            num_words = 8)
     topic_words = best_model.lda.print_topics(num_topics = best_topic_num , num_words = 10)
     print(topic_words)
+
+    #-----------------可视化分析---------------------------------
+    print("--------------------------pyLDAvis可视化分析-----------------------------")
+    LDA_show = pyLDAvis.gensim.prepare(best_model.lda , corpus , dictionary)
+    pyLDAvis.show(LDA_show)
+    pyLDAvis.save_html(LDA_show , './picture/pyLDAvis_show.html')# 保存html文件
