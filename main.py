@@ -59,5 +59,5 @@ if __name__ == '__main__':
                            dictionary = dictionary , 
                            num_topics = best_topic_num , 
                            num_words = 8)
-    topic_words = best_model.lda.print_topics(num_topics = best_topic_num , num_words = 8)
+    topic_words = best_model.lda.print_topics(num_topics = best_topic_num , num_words = 10)
     print(topic_words)

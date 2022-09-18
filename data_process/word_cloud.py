@@ -12,7 +12,7 @@ def WordCloud_process(text_list) :
     word_text = " ".join(word_list)#将词库列表以空格连接，形成字符串文本
 
     #建立词云
-    word_cloud = WordCloud(background_color = 'black' , 
+    word_cloud = WordCloud(background_color = 'black' ,
                            max_words = 2000 , #最大词数
                            width = 800 , 
                            height = 800 , 

@@ -19,7 +19,12 @@ class LDA_topic() :
         self.dictionary = dictionary
         self.num_topics = num_topics
         self.num_words = num_words
-        self.lda = LdaModel(corpus = self.corpus , id2word = self.dictionary , num_topics = num_topics , passes = 10 , random_state = 1)
+        self.lda = LdaModel(corpus = self.corpus ,
+                            id2word = self.dictionary ,
+                            num_topics = num_topics ,
+                            passes = 10 ,
+                            random_state = 100
+                            )
 
     def coherence(self):
         model = self.lda
