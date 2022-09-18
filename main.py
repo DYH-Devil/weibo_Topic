@@ -1,16 +1,27 @@
 from gensim.models import LdaModel , TfidfModel , CoherenceModel
 from data_process.data_clean import word_split , del_stopwords
 from data_process.clean_function import text_process
+from data_process.word_cloud import WordCloud_process
 from data_process.data_clean import text_list as text
-from data_process.LDA import create_create_dict , LDA_topic
+from data_process.LDA import create_dict , LDA_topic
+import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     text_clean = text_process(text)  # 清洗
     text_split_list = word_split(text_clean)  # 分词
     text_del_stopwords = del_stopwords(text_split_list)  # 去停用词
 
-    #-----------------数据处理完毕---------------------------------
+    #-----------------词云分析--------------------------------
 
+    print("--------------------------词云分析-----------------------------")
+    picture =  WordCloud_process(text_del_stopwords)
+    plt.imshow(picture)
+    plt.axis("off")
+    plt.show()
+
+    #-----------------LDA分析---------------------------------
+
+    print("--------------------------LDA分析-----------------------------")
     texts = text_del_stopwords
     dictionary, corpus = create_dict(texts)
     # dictionary:根据语料生成的词典
@@ -24,7 +35,9 @@ if __name__ == '__main__':
     # tfidf描述词语所具有的区分性，即哪些词是文档的关键词
     tfidf_corpus = tfidf[corpus]  # 将corpus中词的频数转为tfidf值[(id,tfidf),......]
 
-    coherence_list = []
+    coherence_dict = {} #困惑度字典:{num_topic : coherence}
+
+    # 话题数从1到5分别计算各自困惑度
     for i in range(1 , 6) :
         model = LDA_topic(texts = texts ,
                         corpus = tfidf_corpus ,
@@ -32,8 +45,19 @@ if __name__ == '__main__':
                         num_topics = i ,
                         num_words = 8)
 
-        print('The topic_num is: ' , i ,
-              'topic words is: ' , model.lda.print_topics(num_topics = i , num_words = model.num_words) ,
-              'coherence is: ' , model.coherence())
+        coherence_dict[i] = model.coherence()
 
-        coherence_list.append(model.coherence())
+    #-----------------最佳主题数---------------------------------
+
+    best_topic_num = list(coherence_dict.values()).index(max(coherence_dict.values())) + 1
+    print("The best topic num is : " , best_topic_num)
+    # 最佳主题数为2
+
+    # 列出最佳主题数下的关键词
+    best_model = LDA_topic(texts = texts , 
+                           corpus = tfidf_corpus , 
+                           dictionary = dictionary , 
+                           num_topics = best_topic_num , 
+                           num_words = 8)
+    topic_words = best_model.lda.print_topics(num_topics = best_topic_num , num_words = 8)
+    print(topic_words)
