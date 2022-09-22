@@ -38,7 +38,7 @@ class Model():
         self.save_step = save_step
         self.has_background = has_b
         self.pw_b.resize(W)
-        self.nwz.resize((K, W))
+        self.nwz.resize((K, W) , refcheck = False)
         self.nb_z.resize(K)
 
     def run(self, doc_pt, res_dir):
@@ -47,18 +47,22 @@ class Model():
         @param {type}
         @return:
         '''
-        self.load_docs(
-            doc_pt)  # 生成self.pw_b 和 self.bs。 目前self.pw_b表示的是每个单词对应的词频，一共有7个单词，那么pw_b的size就是7，self.bs表示的是所有的biterm
+        self.load_docs(doc_pt)  # 生成self.pw_b 和 self.bs。 目前self.pw_b表示的是每个单词对应的词频，一共有7个单词，那么pw_b的size就是7，self.bs表示的是所有的biterm
         # print('==========')
         # print(self.pw_b.size())
         # for item in self.bs:
         #     print(item.get_wi(), item.get_wj())
         # print('==========')
         # 以上代码是用来初始化self.pw_b 和 self.bs
+
+        #self.bs:语料库中的所有词对
+        #self.pw_b:语料库中的词频率
+
+
         self.model_init()  # 初始化 self.nb_z 和 self.nwz  #self.nb_z: 表示的是在那么多的词对中，每个主题出现的次数。#self.nwz[2][3] 表示的是在出题2中，2号单词出现的次数。
         # print('============================')
-        print(self.nwz)  # 词对库中主题的出现次数
-        print(self.nb_z)  # 二维数组: 主题下的单词次数
+        print(self.nwz)  # 二维数组: 主题下的单词次数
+        #print(self.nb_z[1])  # 词对库中主题的出现次数
         # print('=======================')
         # print('\n')
         print("Begin iteration")
@@ -72,6 +76,7 @@ class Model():
                 self.save_res(out_dir)
 
         self.save_res(out_dir)
+
 
     def model_init(self):
         '''
@@ -89,6 +94,7 @@ class Model():
             self.assign_biterm_topic(biterm, k)  # 入参是一个词对和他对应的主题
             # print('============')
             print('\n')
+        #遍历完每个词对(为每个词对分配主题后)便统计出了self.nb_z和self.nwz
 
     def load_docs(self, docs_pt):
         '''
@@ -103,6 +109,7 @@ class Model():
 
         for line in rf.readlines():
             d = Doc(line)  # 初始化，将数字序列存入d.ws列表中
+
             biterms = []  # 一句话里的单词能组成的词对。
             d.gen_biterms(biterms)  # 产生词对,存入biterms
             # statistic the empirical word distribution
@@ -114,6 +121,10 @@ class Model():
         self.pw_b.normalize()  # 做归一化处理,现在 pw_b中保存的是词频率
         # for i in self.bs :
         #     print(i.get_wi() , i.get_wj())
+
+
+
+
 
     def update_biterm(self, bi):  # 为一个词对进行主题更新
         # print('-----------')
@@ -149,7 +160,7 @@ class Model():
         bi.set_z(k)  # 将该词对的主题标记为z
         w1 = bi.get_wi()  # 词对中的一个词
         w2 = bi.get_wj()  # 词对中的第二个词
-        self.nb_z[k] += 1  # self.nb_z: 表示的是在那么多的词对中，每个主题出现的次数。
+        self.nb_z[k] += 1  # self.nb_z: 表示的是在词对库中，每个主题出现的次数。
         self.nwz[k][w1] += 1  # k主题下的w1单词数量+1
         self.nwz[k][w2] += 1  # k主题下的w2单词数量+1
 

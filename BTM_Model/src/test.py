@@ -40,9 +40,12 @@ def BTM(argvs):
             save_step = argvs[6]
             docs_pt = argvs[7]
             dir = argvs[8]
+            #传入参数完毕
+
             print("===== Run BTM, K="+str(K)+", W="+str(W)+", alpha="+str(alpha)+", beta="+str(beta)+", n_iter="+str(n_iter)+", save_step="+str(save_step)+"=====")
             clock_start = time.perf_counter()
-            model = Model(K, W, alpha, beta, n_iter, save_step)
+
+            model = Model(K, W, alpha, beta, n_iter, save_step)#初始化模型
             model.run(docs_pt,dir)
             clock_end = time.perf_counter()
             print("procedure time : "+str(clock_end-clock_start))
@@ -57,16 +60,23 @@ if __name__ ==  "__main__":
     beta = 0.5
     n_iter = 3 #十次迭代
     save_step = 100
-    dir = "../output/"
-    input_dir = "../sample-data/"
+    dir = "./BTM_Model/output/"
+    input_dir = "./BTM_Model/sample-data/"
     model_dir = dir + "model/" #模型存放的文件夹
     voca_pt = dir + "voca.txt" #生成的词典
     dwid_pt = dir + "doc_wids.txt" #每篇文档由对应的序号单词组成
     doc_pt = input_dir + "test.dat" #输入的文档
 
+
+
     print("=============== Index Docs =============")
     # W生成的词典
     W = indexDocs.run_indexDocs(['indexDocs',doc_pt,dwid_pt,voca_pt]) #返回的是词典w2id长度
+    #doc_pt:输入文档,已分词的文档
+    #dwid_pt:将输入文档转化成数字序列的文档
+    #voca_pt:id : word 词典
+    #返回的是字典长度
+
 
     print("W : "+str(W))
 

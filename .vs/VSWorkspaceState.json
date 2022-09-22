@@ -1,10 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\BTM",
+    "\\BTM\\BTM",
+    "\\BTM_Model",
     "\\data",
     "\\data_process",
     "\\something_about"
   ],
-  "SelectedNode": "\\main.py",
+  "SelectedNode": "\\BTM\\BTM",
   "PreviewInSolutionExplorer": false
 }
