@@ -1,14 +1,32 @@
 '''lda主题模型进行话题识别'''
 from gensim.models import LdaModel , TfidfModel , CoherenceModel
 from gensim import corpora
+from collections import defaultdict
 
 def create_dict(texts):
     '''
     :param texts: 语料
     根据语料创建词典
     '''
+    frequency = defaultdict(int)#词频字典
+    for text in texts :
+        for word in text :
+            frequency[word] += 1
+    
+
     dictionary = corpora.Dictionary(texts)
+
+    bad_ids = []
+    for (key , value) in frequency.items() :
+        if(value < 10) :
+            bad_ids.append(dictionary.token2id[key])
+
+    dictionary.filter_tokens(bad_ids = bad_ids)#去除dictionary中词频小于10的词语
+    dictionary.compactify()
+    dictionary.save('./data/my_dictionary.dict')
+
     corpus = [dictionary.doc2bow(text) for text in texts]
+
     return dictionary , corpus
 
 
@@ -21,9 +39,11 @@ class LDA_topic() :
         self.num_words = num_words
         self.lda = LdaModel(corpus = self.corpus ,
                             id2word = self.dictionary ,
-                            num_topics = num_topics ,
-                            passes = 10 ,
-                            random_state = 100
+                            num_topics = self.num_topics ,
+                            passes = 30 ,
+                            # chunksize = 1000 ,
+                            random_state = 10 , 
+                            
                             )
 
     def coherence(self):

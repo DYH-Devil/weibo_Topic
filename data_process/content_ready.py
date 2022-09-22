@@ -13,11 +13,12 @@ pd.set_option('max_colwidth',100)
 
 #-------------------------start---------------------------------------------
 
-file = pd.read_csv('../data/data.csv' ,  encoding = 'utf-8')
+file = pd.read_csv('./data/data.csv' ,  encoding = 'GBK')
 # print(file.describe())
-# print(file.head())
+print(file.head())
 
 
 content = file['微博正文']
-content.to_csv('../data/content.csv')
+content = content.sample(frac = 1)
+content.to_csv('./data/content.csv')
 

@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\data",
     "\\data_process",
     "\\something_about"
   ],
-  "SelectedNode": "\\data_process\\LDA.py",
+  "SelectedNode": "\\main.py",
   "PreviewInSolutionExplorer": false
 }

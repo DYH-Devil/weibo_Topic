@@ -33,9 +33,11 @@ def word_split(text_clean) :
         text_split = jieba.lcut(text)#对每个句子进行分词
         text_split_copy = deepcopy(text_split)#remove前需要深拷贝，否则踩大坑
         for word in text_split_copy :
-            if(word == ' ') :#删除空格
+            if(word == ' ' or len(word) < 2) :#删除空格和长度小于2的词语
                 text_split.remove(word)
-        text_split_list.append(text_split)#text_split_list:[['x','x'...],['x','x'...]...]
+
+        if (len(text_split) > 2) :
+            text_split_list.append(text_split)#text_split_list:[['x','x'...],['x','x'...]...]
     return text_split_list
 #---------------------------------------------------------
 # print(text_split_list)
@@ -47,7 +49,7 @@ def del_stopwords(text_split_list) :
     :param text_split_list: 分词后的文本
     :return:
     '''
-    stop_words = open('./data/my_stopwords.txt', 'r', encoding='utf-8').readlines()  # 读取停用词库
+    stop_words = open('./data/cn_stopwords.txt', 'r', encoding='utf-8').readlines()  # 读取停用词库
     stop_list = []  # 将文件中的停用词存入列表
     for i in stop_words:
         stop_list.append(i.strip())
@@ -57,6 +59,10 @@ def del_stopwords(text_split_list) :
         for word in text_copy :
             if(word in stop_list) :
                 text.remove(word)
+    text_split_list_copy = deepcopy(text_split_list)
+    for text in text_split_list_copy :
+        if(len(text) <= 5 ) :
+            text_split_list.remove(text)
     return text_split_list
 
 

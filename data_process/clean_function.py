@@ -26,6 +26,7 @@ def text_process(text_list) :
         text = re.sub('[0-9]', '', text)#去除数字
         text = re.sub('[a-zA-Z]' , '' , text)#去除英文字符
         text = text.replace('*', '')
-        text_clean.append(text)
+        if(len(text) > 1) :
+            text_clean.append(text)
 
     return text_clean

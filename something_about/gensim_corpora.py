@@ -17,7 +17,7 @@ for key in dictionary.keys() :
     #(word_id , word , word_tf)
     #dfs[x]表示单词索引对应的单词出现的文档次数
 
-print("dictionary.token2id: " , dictionary.token2id)#[word : id]
+print("dictionary.token2id: " , dictionary.token2id['今天'])#[word : id]
 print("dictionary,id2token: " , dictionary.id2token)#[id : word]
 print("dictionary.num_docs: " , dictionary.num_docs)#文档数量
 print("dictionary.num_pos: " , dictionary.num_pos)#s所有词个数(含重)
