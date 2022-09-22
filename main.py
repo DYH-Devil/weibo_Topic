@@ -6,7 +6,7 @@ from data_process.data_clean import text_list as text
 from data_process.LDA import create_dict , LDA_topic
 import matplotlib.pyplot as plt
 from collections import defaultdict
-import pyLDAvis.gensim
+import pyLDAvis.gensim_models
 
 if __name__ == '__main__':
     text_clean = text_process(text)  # 清洗
