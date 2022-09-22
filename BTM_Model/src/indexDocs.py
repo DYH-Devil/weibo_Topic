@@ -6,12 +6,13 @@
 @Description: In User Settings Edit
 @FilePath: /BTMpy/src/indexDocs.py
 '''
-#!/usr/bin/env python
-#coding=utf-8
+# !/usr/bin/env python
+# coding=utf-8
 # translate word into id in documents:将文档中的词语转化成id
 import sys
 
-w2id = {}#word to id词典
+w2id = {}  # word to id词典
+
 
 def indexFile(pt, res_pt):
     '''
@@ -20,32 +21,33 @@ def indexFile(pt, res_pt):
     :param res_pt: 将输入数据转换成id格式
     :return:
     '''
-    print('index file: '+str(pt))
-    wf = open(res_pt, 'w')#将结果写入词典
-    for l in open(pt , encoding = 'utf-8'):#遍历文档中的每行
+    print('index file: ' + str(pt))
+    wf = open(res_pt, 'w')  # 将结果写入词典
+    for l in open(pt, encoding='utf-8'):  # 遍历文档中的每行
         ws = l.strip().split()
-        for w in ws:#每一行中的单词
+        for w in ws:  # 每一行中的单词
             if w not in w2id:
-                w2id[w] = len(w2id)#为word赋值id
-                #词典中的词无重复
+                w2id[w] = len(w2id)  # 为word赋值id
+                # 词典中的词无重复
         wids = [w2id[w] for w in ws]
         # print>>wf,' '.join(map(str, wids))
         print(' '.join(map(str, wids)), file=wf)
-         
-    print('write file: '+str(res_pt))
+
+    print('write file: ' + str(res_pt))
 
 
-def write_w2id(res_pt):#保存字典
+def write_w2id(res_pt):  # 保存字典
     '''
     保存词典w2id{}
     :param res_pt: 这里的res_pt指保存的词典路径
     :return:
     '''
-    print('write:'+str(res_pt))
+    print('write:' + str(res_pt))
     wf = open(res_pt, 'w')
-    for w, wid in sorted(w2id.items(), key=lambda d:d[1]):#按词语的id排序
-        print('%d\t%s' % (wid, w), file=wf)#(id   word)格式
-        
+    for w, wid in sorted(w2id.items(), key=lambda d: d[1]):  # 按词语的id排序
+        print('%d\t%s' % (wid, w), file=wf)  # (id   word)格式
+
+
 def run_indexDocs(argv):
     if len(argv) < 4:
         print('Usage: python %s <doc_pt> <dwid_pt> <voca_pt>' % argv[0])
@@ -53,11 +55,11 @@ def run_indexDocs(argv):
         print('\tdwid_pt   output docs after indexing, each line is a doc with the format "wordId wordId..."')
         print('\tvoca_pt   output vocabulary file, each line is a word with the format "wordId    word"')
         exit(1)
-        
+
     doc_pt = argv[1]
     dwid_pt = argv[2]
     voca_pt = argv[3]
     indexFile(doc_pt, dwid_pt)
-    print('n(w)='+str(len(w2id)))
+    print('n(w)=' + str(len(w2id)))
     write_w2id(voca_pt)
     return len(w2id)

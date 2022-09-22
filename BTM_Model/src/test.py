@@ -4,7 +4,7 @@
 @LastEditTime: 2020-03-08 15:54:21
 @LastEditors: Please set LastEditors
 @Description: In User Settings Edit
-@FilePath: /BTMpy/src/main.py
+@FilePath: /BTMpy/src/test.py
 '''
 # -*- coding: utf-8 -*-
 import time
@@ -51,12 +51,12 @@ def BTM(argvs):
 
 if __name__ ==  "__main__":
     mode = "est"
-    K = 3
+    K = 3#主题数数量
     W = None
     alpha = 0.5
     beta = 0.5
     n_iter = 3 #十次迭代
-    save_step = 100 
+    save_step = 100
     dir = "../output/"
     input_dir = "../sample-data/"
     model_dir = dir + "model/" #模型存放的文件夹
