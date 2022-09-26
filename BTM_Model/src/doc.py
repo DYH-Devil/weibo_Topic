@@ -38,7 +38,7 @@ class Doc():
         'win': window size for biterm extraction
         'bs': the output biterms
     '''
-    def gen_biterms(self,bs,win=15):
+    def gen_biterms(self,bs,win=20):
         '''
         :param bs:the output biterms(输出的词对将存放到bs中)
         :param win:window size for biterm extraction，词对窗口

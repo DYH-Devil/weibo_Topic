@@ -1,12 +1,12 @@
 from gensim.models import LdaModel , TfidfModel , CoherenceModel
-from data_process.data_clean import word_split , del_stopwords
-from data_process.clean_function import text_process
-from data_process.word_cloud import WordCloud_process
-from data_process.data_clean import text_list as text
-from data_process.LDA import create_dict , LDA_topic
+from data_clean import word_split , del_stopwords
+from clean_function import text_process
+from word_cloud import WordCloud_process
+from data_clean import text_list as text
+from model import create_dict , LDA_topic
 import matplotlib.pyplot as plt
 from collections import defaultdict
-import pyLDAvis.gensim_models
+import pyLDAvis.gensim
 
 if __name__ == '__main__':
     text_clean = text_process(text)  # 清洗
@@ -60,8 +60,8 @@ if __name__ == '__main__':
                            corpus = tfidf_corpus , 
                            dictionary = dictionary , 
                            num_topics = 4 , 
-                           num_words = 8)
-    topic_words = best_model.lda.print_topics(num_topics = 4 , num_words = 8)
+                           num_words = 10)
+    topic_words = best_model.lda.print_topics(num_topics = 4 , num_words = 10)
     for topic in topic_words :
         print(topic)
 

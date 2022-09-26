@@ -18,7 +18,7 @@ def create_dict(texts):
 
     bad_ids = []
     for (key , value) in frequency.items() :
-        if(value < 10) :
+        if(value < 50) :
             bad_ids.append(dictionary.token2id[key])
 
     dictionary.filter_tokens(bad_ids = bad_ids)#去除dictionary中词频小于10的词语
@@ -43,7 +43,9 @@ class LDA_topic() :
                             passes = 30 ,
                             # chunksize = 1000 ,
                             random_state = 10 , 
-                            
+                            alpha = 0.25 ,
+                            eta = 0.01 , 
+                            iterations = 100
                             )
 
     def coherence(self):

@@ -54,18 +54,18 @@ def BTM(argvs):
 
 if __name__ ==  "__main__":
     mode = "est"
-    K = 3#主题数数量
+    K = 4#主题数数量
     W = None
-    alpha = 0.5
-    beta = 0.5
-    n_iter = 3 #十次迭代
+    alpha = 0.08#alpha =  K / 50
+    beta = 0.1
+    n_iter = 30 # beta:0.1,iter:30次效果较理想
     save_step = 100
     dir = "./BTM_Model/output/"
     input_dir = "./BTM_Model/sample-data/"
     model_dir = dir + "model/" #模型存放的文件夹
     voca_pt = dir + "voca.txt" #生成的词典
     dwid_pt = dir + "doc_wids.txt" #每篇文档由对应的序号单词组成
-    doc_pt = input_dir + "test.dat" #输入的文档
+    doc_pt = input_dir + "res_file.dat" #输入的文档
 
 
 

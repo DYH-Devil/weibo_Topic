@@ -1,13 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BTM",
-    "\\BTM\\BTM",
-    "\\BTM_Model",
     "\\data",
-    "\\data_process",
-    "\\something_about"
+    "\\data_process"
   ],
-  "SelectedNode": "\\BTM\\BTM",
   "PreviewInSolutionExplorer": false
 }

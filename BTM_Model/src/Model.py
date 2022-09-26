@@ -74,6 +74,7 @@ class Model():
                 self.update_biterm(self.bs[b])  # 计算核心代码，self.bs中保存的是词对的biterm类，代码是对每一个词对进行更新的。
             if i % self.save_step == 0:
                 self.save_res(out_dir)
+            print("==============================已迭代完第" , i , "次===================================")
 
         self.save_res(out_dir)
 
@@ -119,6 +120,7 @@ class Model():
             for b in biterms:  # b表示一个封装成类的词对
                 self.bs.append(b)  # self.bs中添加的是一个biterm类。类的内容是这段文本中所有可能的词的组合.
         self.pw_b.normalize()  # 做归一化处理,现在 pw_b中保存的是词频率
+        print("词对个数: " , len(self.bs))
         # for i in self.bs :
         #     print(i.get_wi() , i.get_wj())
 
@@ -134,7 +136,7 @@ class Model():
         pz = Pvec()
         self.comput_pz_b(bi, pz)  # 计算出来的结果，直接作用在pz上。
         # print(pz) #pz是一个三个具体的数，如果主题的个数是5的话，那么pz就是5个具体的数。
-        print(pz.to_vector(), len(pz.to_vector()))  # pz.to_vector()表示将三个数转成向量。
+        # print(pz.to_vector(), len(pz.to_vector()))  # pz.to_vector()表示将三个数转成向量。
         # sample topic for biterm b
         k = mul_sample(pz.to_vector())  # k表示根据pz算出三个数中最大的主题。。
         # print(k)
