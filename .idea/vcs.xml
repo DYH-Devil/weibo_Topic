@@ -3,5 +3,8 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/BTM" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/GSDMM" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/GSDMM/gsdmm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/bertopic-chinese-example" vcs="Git" />
   </component>
 </project>
