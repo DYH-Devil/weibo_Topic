@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\data",
-    "\\data_process"
+    "\\gsdmm",
+    "\\gsdmm\\gsdmm",
+    "\\gsdmm\\test",
+    "\\LDA_Model"
   ],
+  "SelectedNode": "\\gsdmm",
   "PreviewInSolutionExplorer": false
 }
