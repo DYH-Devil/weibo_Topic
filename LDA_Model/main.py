@@ -3,7 +3,7 @@ from data_clean import word_split , del_stopwords
 from clean_function import text_process
 from word_cloud import WordCloud_process
 from data_clean import text_list as text
-from model import create_dict , LDA_topic
+from GSDMM import create_dict , LDA_topic
 import matplotlib.pyplot as plt
 from collections import defaultdict
 import pyLDAvis.gensim

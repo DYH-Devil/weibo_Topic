@@ -41,3 +41,5 @@ topics , probabilities = model.fit_transform(docs[:1000] , embeddings = embeddin
 
 for i in range(4) :
     print(model.get_topic(i))
+
+
