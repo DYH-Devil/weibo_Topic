@@ -45,7 +45,7 @@ class MovieGroupProcess:
     @staticmethod
     def from_data(K, alpha, beta, D, vocab_size, cluster_doc_count, cluster_word_count, cluster_word_distribution):
         '''
-        Reconstitute a MovieGroupProcess from previously fit data
+        Reconstitute a MovieGroupProcess from previously fit res
         从data中获取以上参数，参数意义与上同
         :param K:
         :param alpha:

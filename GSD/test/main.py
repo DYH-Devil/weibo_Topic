@@ -1,7 +1,7 @@
 import numpy
 import numpy as np
 
-from GSDMM_Model.gsdmm.mgp import  MovieGroupProcess
+from GSD.gsdmm.mgp import  MovieGroupProcess
 
 np.random.seed(47)
 

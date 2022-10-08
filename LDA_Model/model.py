@@ -23,7 +23,7 @@ def create_dict(texts):
 
     dictionary.filter_tokens(bad_ids = bad_ids)#去除dictionary中词频小于10的词语
     dictionary.compactify()
-    dictionary.save('./data/my_dictionary.dict')
+    dictionary.save('./res/my_dictionary.dict')
 
     corpus = [dictionary.doc2bow(text) for text in texts]
 

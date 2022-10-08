@@ -8,7 +8,7 @@ import jieba
 from copy import deepcopy
 
 #--------------------读取文件-------------------------
-file = open('../data/content.csv' , 'r' , encoding = 'utf-8')
+file = open('../data/content.csv' , 'r' , encoding = 'GBK')
 reader = csv.reader(file)#按行读取csv文件
 #reader:[['1','xxx'] , ['2','xxx']........]
 #---------------------------------------------------
@@ -20,7 +20,7 @@ for row in reader :
     row = row[1]
     text_list.append(row)
 text_list.pop(0)#去除head:微博正文(列头)'
-# print(text_list)
+print(text_list)
 #---------------------------------------------------
 #分词
 def word_split(text_clean) :

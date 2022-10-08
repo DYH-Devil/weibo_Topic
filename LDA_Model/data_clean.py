@@ -8,7 +8,7 @@ import jieba
 from copy import deepcopy
 
 #--------------------读取文件-------------------------
-file = open('./data/content.csv' , 'r' , encoding = 'utf-8')
+file = open('./res/content.csv' , 'r' , encoding = 'utf-8')
 reader = csv.reader(file)#按行读取csv文件
 #reader:[['1','xxx'] , ['2','xxx']........]
 #---------------------------------------------------
@@ -49,7 +49,7 @@ def del_stopwords(text_split_list) :
     :param text_split_list: 分词后的文本
     :return:
     '''
-    stop_words = open('./data/cn_stopwords.txt', 'r', encoding='utf-8').readlines()  # 读取停用词库
+    stop_words = open('./res/cn_stopwords.txt', 'r', encoding='utf-8').readlines()  # 读取停用词库
     stop_list = []  # 将文件中的停用词存入列表
     for i in stop_words:
         stop_list.append(i.strip())

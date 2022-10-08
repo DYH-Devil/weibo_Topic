@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/BTM/output/voca.txt" charset="GBK" />
     <file url="file://$PROJECT_DIR$/data/data.csv" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
   </component>
 </project>
