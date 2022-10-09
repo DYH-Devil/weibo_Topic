@@ -13,20 +13,20 @@ def c_tf_idf(documents , num_data , ngram_range = (1 , 1)) :
     count = CountVectorizer(ngram_range = ngram_range ,
                             stop_words = stop_words)
     t = count.fit_transform(documents).toarray()# 计算文档的词频矩阵
-    print("t shape: " , t.shape)
+    # print("t shape: " , t.shape)
 
     # dict = count.vocabulary_ # 词典
     sum = t.sum(axis = 1)# sum为统计每一簇中单词的总数
-    print("sum shape: " , sum.shape)
+    # print("sum shape: " , sum.shape)
 
     tf = np.divide(t.T , sum)# tf值:词频率，表示每个词在每一簇中的出现频率
-    print("tf shape: " , tf.shape)
+    # print("tf shape: " , tf.shape)
 
     sum_t = t.sum(axis = 0)#词在所有类中的出现次数，即在所有文档中出现的次数，(每个类是由文档连接而得)
-    print("sum_t shape" , sum_t.shape)
+    # print("sum_t shape" , sum_t.shape)
 
     idf = np.log(1 + np.divide(num_data , sum_t)).reshape(-1 , 1)
-    print("idf shape: " , idf.shape)
+    # print("idf shape: " , idf.shape)
 
     tf_idf = np.multiply(tf , idf)
     return tf_idf , count
