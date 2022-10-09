@@ -1,9 +1,5 @@
 #encoding=GBK
 import numpy as np
-
-from data_process import data_process
-import pandas as pd
-from cluster import ump_sentence_res
 from sklearn.feature_extraction.text import CountVectorizer
 
 def c_tf_idf(documents , num_data , ngram_range = (1 , 1)) :
@@ -45,7 +41,7 @@ def extract_n_words_perTopic(c_tfidf , count , docs_per_topic , n_top = 10) :
     :return:
     '''
     top_n_words = {}
-    words = count.get_feature_names_out() # 单词库
+    words = count.get_feature_names_out() # 单词库 list
     labels = list(docs_per_topic['Topic'])
 
     c_tfidf_transpose = c_tfidf.T# shape由[len(word_dic) , num_topic]转置为[num_topic,len(word_dic)]
@@ -60,26 +56,19 @@ def extract_n_words_perTopic(c_tfidf , count , docs_per_topic , n_top = 10) :
             top_n_words[label].append(words_tfidf)
     return top_n_words
 
-docs = data_process()
+def topic_size(docs_df) :
+    '''
+    :param docs_df: 文档集
+    :return: 每个主题下的文档数目
+    '''
+    topic_size = (docs_df.groupby(['Topic']).
+                  Doc.
+                  count().
+                  reset_index().
+                  rename({"Topic" : "Topic" , "Doc" : "Size"} , axis = 'columns').
+                  sort_values("Size" , ascending = False)
+                  )
+    return topic_size
 
-docs_df = pd.DataFrame(docs ,columns = ['Doc'])
-docs_df['Topic'] = ump_sentence_res['label']
-docs_df['Doc_ID'] = range(len(docs_df))
-print(docs_df)
 
-docs_per_topic = docs_df.groupby(['Topic'] , as_index = False).agg({"Doc" : ' '.join})#将所有文档按主题分别连接为一个大文档
-print(docs_per_topic)
-
-print("number of topic: " , len(docs_per_topic['Doc'].tolist()))#话题数
-
-
-c_tfidf , count = c_tf_idf(docs_per_topic['Doc'] , num_data = len(docs))# tf矩阵
-print(c_tfidf)
-print("c_tfidf shape: " , c_tfidf.shape)
-
-topic_words = extract_n_words_perTopic(c_tfidf , count , docs_per_topic , n_top = 10)
-
-del topic_words[-1]
-for topic , words in topic_words.items() :
-    print(topic , words)
 

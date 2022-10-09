@@ -42,6 +42,7 @@ embedding_df = pd.DataFrame(embeddings)
 
 model = BERTopic(embedding_model = sentence_model , verbose = True , vectorizer_model = vectorizer , nr_topics = 5)
 topics , probabilities = model.fit_transform(docs , embeddings = embeddings)
+print(model.get_topic(-1))
 
 for i in range(5) :
     print(model.get_topic(i))

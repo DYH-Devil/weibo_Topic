@@ -16,3 +16,6 @@ print(docs_df)
 #¹¹½¨topic_size Dataframe
 t_size = topic_size(docs_df)
 print(t_size)
+
+topic_merge = t_size.loc[t_size['Size'] < 100].Topic
+print(topic_merge)
