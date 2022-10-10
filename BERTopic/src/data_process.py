@@ -23,7 +23,7 @@ def data_process() :
     for line in data_df["微博正文"] :
         text_list.append(line)
 
-    print(len(text_list))
+    print("微博数目:" , len(text_list))
 
     text_clean = text_process(text_list)#对文本进行简单清洗
 

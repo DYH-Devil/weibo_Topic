@@ -1,15 +1,14 @@
-i = 1
+a = 1
+def b(num) :
+    global a
+    a += num
 
-def a(num) :
-    for i in range(num) :
-        i = i + 1
-    return i
+def c() :
+    global a
+    a = 5
+    for i in range(1) :
+        b(2)
+        print(a)
+    print(a)
 
-
-b = a(4)#4
-
-def c(i) :
-    c = b+i
-    return c
-
-print(c(4))
+c()

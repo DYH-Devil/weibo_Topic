@@ -19,4 +19,4 @@ doc_list = docs_per_topic['Doc'].tolist()
 # print(doc)
 for i , doc in enumerate(doc_list) :
     topic_cloud = word_cloud.generate(doc)
-    topic_cloud.to_file('../res_save/wordcloud/topic'+str(i)+'_cloud.png')
+    topic_cloud.to_file('../res_save/wordcloud/topic'+str(i + 1)+'_cloud.png')

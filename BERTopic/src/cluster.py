@@ -5,7 +5,6 @@ import joblib
 import umap
 import pandas as pd
 from matplotlib import pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
 if(os.path.exists('../model/umap_embedding.dat')) :
     umap_embedding = joblib.load('../model/umap_embedding.dat')
@@ -54,13 +53,17 @@ ump_sentence_res['label'] = cluster.labels_
 
 fig , ax = plt.subplots(figsize = (25 , 15))
 clustered = ump_sentence_res.loc[ump_sentence_res['label'] != -1 , : ]
-print(clustered)
+# print(clustered)
 
 noise = ump_sentence_res.loc[ump_sentence_res['label'] == -1 , : ]
 plt.scatter(noise['X'] , noise['Y'] , c = 'black' , s = 0.05 , marker = 'x')
 
 plt.scatter(clustered['X'] , clustered['Y'] , c = clustered['label'] , s = 0.05 , cmap = 'hsv_r')
 plt.colorbar()
+
+plt.rcParams['font.sans-serif']=['SimHei']
+plt.rcParams['axes.unicode_minus'] = False
+plt.title("聚类后的2维投影")
 plt.show()
 plt.savefig('../res_save/cluster_pic.png')
 
