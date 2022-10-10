@@ -18,3 +18,7 @@ print(t_size)
 print("相似度矩阵:")
 print(similarity)
 print(similarity.shape)
+
+print("合并主题后的话题-文档集")
+docs_per_topic = docs_per_topic.loc[docs_per_topic['Topic'] != -1]
+print(docs_per_topic)

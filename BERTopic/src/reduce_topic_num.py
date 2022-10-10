@@ -37,7 +37,7 @@ c_tfidf , count = c_tf_idf(docs_per_topic['Doc'] , num_data = len(docs))# tf矩阵
 # topic_words = extract_n_words_perTopic(c_tfidf , count , docs_per_topic , n_top = 10)
 
 merge_Topic = t_size.loc[(t_size['Size'] < 100) & (t_size['Topic'] != -1)].Topic
-merge_len = len(merge_Topic)
+merge_len = len(merge_Topic)#需要合并的主题数目
 #---------------------------------------------------------------------------------------------------------
 
 print("合并前主题的主题-文档分布:")
@@ -66,7 +66,7 @@ def merge_topic(topic_size_min) :
         # print("topic_to_merge : " , topic_to_merge)
         topic_to_merge_in = np.argmax(similarity[topic_to_merge + 1]) - 1# -1 +1是因为该主题在similarity矩阵中的行列号 = 主题号 + 1
         # print("topic_to_merge_in : " , topic_to_merge_in)# 需要将该主题合并至的目标主题,即similarity矩阵中该主题行中最大值所对应的主题
-        print("主题:" , topic_to_merge , "被合并到主题:" , topic_to_merge_in)
+        # print("主题:" , topic_to_merge , "被合并到主题:" , topic_to_merge_in)
 
         #下面改变其主题
         docs_df.loc[docs_df['Topic'] == topic_to_merge , "Topic"] = topic_to_merge_in#在文档集docs_df中改变该文档所对应的主题
@@ -90,8 +90,8 @@ def merge_topic(topic_size_min) :
 
         #更新t_size
         t_size = topic_size(docs_df)
-        print("第" , i + 1 ,"次合并后的主题分布")
-        print(t_size)
+        # print("第" , i + 1 ,"次合并后的主题分布")
+        # print(t_size)
 
         #更新similarity矩阵
         c_tfidf_transpose = c_tfidf.T  # shape[topic_num , len(word_dic)]

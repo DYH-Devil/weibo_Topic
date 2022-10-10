@@ -56,6 +56,9 @@ fig , ax = plt.subplots(figsize = (25 , 15))
 clustered = ump_sentence_res.loc[ump_sentence_res['label'] != -1 , : ]
 print(clustered)
 
+noise = ump_sentence_res.loc[ump_sentence_res['label'] == -1 , : ]
+plt.scatter(noise['X'] , noise['Y'] , c = 'black' , s = 0.05 , marker = 'x')
+
 plt.scatter(clustered['X'] , clustered['Y'] , c = clustered['label'] , s = 0.05 , cmap = 'hsv_r')
 plt.colorbar()
 plt.show()
