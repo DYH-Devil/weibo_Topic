@@ -1,7 +1,3 @@
-import joblib
-import os
+import numpy as np
 
-if(os.path.exists('../model/topic_words.dat')) :
-    topic_words = joblib.load('../model/topic_words.dat')
-
-print(topic_words)
+print(max(np.log(1) , 4))

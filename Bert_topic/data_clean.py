@@ -20,7 +20,6 @@ for row in reader :
     row = row[1]
     text_list.append(row)
 text_list.pop(0)#去除head:微博正文(列头)'
-print(text_list)
 #---------------------------------------------------
 #分词
 def word_split(text_clean) :

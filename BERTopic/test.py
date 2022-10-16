@@ -1,14 +1,9 @@
-a = 1
-def b(num) :
-    global a
-    a += num
+import numpy as np
 
-def c() :
-    global a
-    a = 5
-    for i in range(1) :
-        b(2)
-        print(a)
-    print(a)
+a = np.array([0.1,0.2,0.3,0.4,0.5,0.6])
 
-c()
+b = np.array([[1,2,3,4,5,6],
+             [2,3,4,5,6,7],
+             [3,4,5,6,7,8]])
+
+print(np.multiply(a , b))

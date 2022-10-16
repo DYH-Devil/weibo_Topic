@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\HotTopic_detection\data\hotopic.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\data\content.csv">
           <value>
             <Attribute>

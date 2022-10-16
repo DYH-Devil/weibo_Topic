@@ -12,15 +12,18 @@ def data_process() :
     简单处理文本
     :return: 分词，清洗后的语料
     '''
-    data_df = pd.read_csv('../data/content.csv' , encoding = 'GBK')
+    data_df = pd.read_csv('../data/weibo_content.csv' , encoding = 'utf-8')
     stop_file = open('../data/cn_stopwords.txt' , 'r' , encoding = 'utf-8')
+
+    data_df['text'] = data_df['text'].astype(str)
+    print(data_df.dtypes)
 
     stop_words = []
     for word in stop_file.readlines() :
         stop_words.append(word.strip())
 
     text_list = []
-    for line in data_df["微博正文"] :
+    for line in data_df["text"] :
         text_list.append(line)
 
     print("微博数目:" , len(text_list))
