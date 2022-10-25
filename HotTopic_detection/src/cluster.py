@@ -19,8 +19,8 @@ def HDBSCAN_CLUSTER(min_cluster_size) :
         print("找不到聚类所用的数据")
     # 在hdbscan聚类时使用的是15维的数据，在可视化时只用两维
 
-    if (os.path.exists('../model/hdbscan_res.dat')):
-        sentence_cluster = joblib.load('../model/hdbscan_res.dat')
+    if (os.path.exists('../model/sentence_cluster.dat')):
+        sentence_cluster = joblib.load('../model/sentence_cluster.dat')
     else:
         cluster_model = hdbscan.HDBSCAN(
             min_cluster_size=min_cluster_size,

@@ -16,6 +16,7 @@ def UMAP_REDUCTION_FORCLUSTER(sentence_embedding , n_nerghbors , n_components) :
     :param n_components: ump参数:下降维度
     :return: 降维后的向量,用于聚类
     '''
+
     if (os.path.exists('../model/sentence_model.dat')):
         sentence_embedding = joblib.load('../model/sentence_model.dat')
     else:

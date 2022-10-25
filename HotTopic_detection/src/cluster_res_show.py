@@ -13,6 +13,7 @@ def SHOW_CLUSTER(sentence_embedding) :
     :param sentence_embedding: 句子向量将为2维之后的数据
     :return: None
     '''
+
     cluster_name = '../model/sentence_cluster.dat'
     if(os.path.exists(cluster_name)) :
         cluster = joblib.load(cluster_name)
